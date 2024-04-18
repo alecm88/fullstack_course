@@ -1,0 +1,11 @@
+sequenceDiagram
+    participant browser
+    participant server
+
+    Note right of browser: Filled in text input and press submit
+    Note right of browser: Form event is triggered and note is added to notes array, redraw event triggered and then sent via js to server
+
+    browser->>server: POST https://studies.cs.helsinki.fi/exampleapp/new_note_spa [{note: "test4"}]
+    activate server
+    server-->>browser: JSON response {message: "note created"}
+    deactivate server

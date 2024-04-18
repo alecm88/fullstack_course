@@ -1,0 +1,34 @@
+sequenceDiagram
+    participant browser
+    participant server
+
+    Note right of browser: Filled in text input and press submit
+
+    browser->>server: POST https://studies.cs.helsinki.fi/exampleapp/new_note [{note: "test"}]
+    activate server
+    server-->>browser: HTML document
+    deactivate server
+
+    browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/notes
+    activate server
+    server-->>browser: HTML document
+    deactivate server
+
+    browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/main.css
+    activate server
+    server-->>browser: the css file
+    deactivate server
+
+    browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/main.js
+    activate server
+    server-->>browser: the JavaScript file
+    deactivate server
+
+    browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/data.json
+    activate server
+    server-->>browser: [{content: "req", date: "2024-04-17T23:54:59.571Z"}, ..., {content: "test", date: "2024-04-18T07:35:23.067Z"}]
+    deactivate server
+
+    Note left of server: Our note is indexed last at 99
+
+    Note right of browser: The browser executes the callback function that renders the notes. Our note is at the bottom
